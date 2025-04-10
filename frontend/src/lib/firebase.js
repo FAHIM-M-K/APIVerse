@@ -8,7 +8,8 @@ const firebaseConfig = {
     projectId: "apiverse-huma",
     storageBucket: "apiverse-huma.firebasestorage.app",
     messagingSenderId: "970662891138",
-    appId: "1:970662891138:web:49eab0a727df9a26066e9b"
+    appId: "1:970662891138:web:49eab0a727df9a26066e9b",
+    databaseURL: "https://apiverse-huma.firebaseio.com"
   };
   
 // Initialize Firebase

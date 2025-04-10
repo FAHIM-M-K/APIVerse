@@ -21,7 +21,8 @@ export default function Auth() {
       if (isSignUp) {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         await sendEmailVerification(userCredential.user); // Send verification email
-        const token = await userCredential.user.getIdToken();
+        const token = await userCredential.user.getIdToken(true); // Force refresh
+        console.log("Generated Token:", token); // Debug log
         localStorage.setItem("token", token);
         alert("Signed up successfully! Please verify your email before logging in.");
         setIsSignUp(false); // Switch back to login view
@@ -31,7 +32,8 @@ export default function Auth() {
           alert("Please verify your email before logging in.");
           return;
         }
-        const token = await userCredential.user.getIdToken();
+        const token = await userCredential.user.getIdToken(true); // Force refresh
+        console.log("Generated Token:", token); // Debug log
         localStorage.setItem("token", token);
         alert("Logged in successfully! Redirecting to profile...");
         window.location.href = "/profile";
@@ -44,7 +46,8 @@ export default function Auth() {
   const handleGoogleLogin = async () => {
     try {
       const userCredential = await signInWithPopup(auth, googleProvider);
-      const token = await userCredential.user.getIdToken();
+      const token = await userCredential.user.getIdToken(true); // Force refresh
+      console.log("Generated Token:", token); // Debug log
       localStorage.setItem("token", token);
       alert("Logged in with Google! Redirecting to profile...");
       window.location.href = "/profile";

@@ -1,1 +1,6 @@
-"node_modules/\n__pycache__/\n*.pyc\n*.joblib\nvenv/" 
+node_modules/
+__pycache__/
+*.pyc
+*.joblib
+venv/
+backend/apiverse-huma-firebase-adminsdk-fbsvc-70c3fa0329.json
