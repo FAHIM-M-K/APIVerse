@@ -12,6 +12,18 @@ frontend/out/
 frontend/.env.local
 frontend/.env
 frontend/next-env.d.ts
+frontend/.pnp
+frontend/.pnp.*
+frontend/.yarn/*
+!frontend/.yarn/patches
+!frontend/.yarn/plugins
+!frontend/.yarn/releases
+!frontend/.yarn/versions
+frontend/coverage/
+frontend/build/
+frontend/*.pem
+frontend/.vercel/
+frontend/*.tsbuildinfo
 
 # General ignores
 *.log
