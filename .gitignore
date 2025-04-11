@@ -1,6 +1,20 @@
-node_modules/
-__pycache__/
-*.pyc
-*.joblib
-venv/
+# Backend-specific ignores
 backend/apiverse-huma-firebase-adminsdk-fbsvc-70c3fa0329.json
+backend/.env
+backend/__pycache__/
+backend/*.pyc
+backend/venv/
+
+# Frontend-specific ignores
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env.local
+frontend/.env
+frontend/next-env.d.ts
+
+# General ignores
+*.log
+*.swp
+.DS_Store
+.env
