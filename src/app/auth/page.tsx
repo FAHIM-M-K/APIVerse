@@ -10,10 +10,10 @@ export default function AuthPage() {
   const [password, setPassword] = useState('');
   const [isLogin, setIsLogin] = useState(true);
   const [error, setError] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // State for password visibility
+  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
     try {
@@ -23,8 +23,12 @@ export default function AuthPage() {
         await signup(email, password);
       }
       router.push('/dashboard');
-    } catch (err: any) {
-      setError(err.message || 'Something went wrong.');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('Something went wrong.');
+      }
     }
   };
 
@@ -36,8 +40,12 @@ export default function AuthPage() {
     try {
       await resetPassword(email);
       setError('Password reset email sent. Check your inbox.');
-    } catch (err: any) {
-      setError(err.message || 'Failed to send reset email.');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('Failed to send reset email.');
+      }
     }
   };
 
@@ -60,7 +68,7 @@ export default function AuthPage() {
               [-webkit-autofill]:text-white 
               [-webkit-autofill]:border-white 
               autofill:!bg-transparent"
-            style={{ backgroundColor: 'transparent !important' }} // Inline style to enforce transparency
+            style={{ backgroundColor: 'transparent !important' }}
           />
           <div className="relative">
             <input

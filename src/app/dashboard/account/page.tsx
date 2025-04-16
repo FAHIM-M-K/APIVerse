@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import withAuth from '@/lib/withAuth';
+import { FirebaseError } from 'firebase/app';
 
 const AccountPage = () => {
   const router = useRouter();
@@ -28,8 +29,8 @@ const AccountPage = () => {
 
       toast.success('Account deleted successfully.');
       router.push('/auth');
-    } catch (error: any) {
-      if (error.code === 'auth/requires-recent-login') {
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError && error.code === 'auth/requires-recent-login') {
         toast.error('Please re-login and try again.');
       } else {
         toast.error('Failed to delete account.');
