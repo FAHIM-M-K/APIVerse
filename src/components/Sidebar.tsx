@@ -1,23 +1,36 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import clsx from 'clsx';
 
 const Sidebar = () => {
+  const pathname = usePathname();
+
+  const navItems = [
+    { label: 'My API Keys', href: '/dashboard/api-keys' },
+    { label: 'Predict', href: '/dashboard/predict' },
+    { label: 'Account', href: '/dashboard/account' },
+  ];
+
   return (
-    <div className="h-screen w-64 bg-neutral-900 text-white p-6 flex flex-col">
-      <h2 className="text-cyan-400 text-2xl font-bold mb-10">Dashboard</h2>
-      <nav className="flex flex-col gap-4">
-        <Link href="/dashboard" className="hover:text-cyan-300">
-          Home
-        </Link>
-        <Link href="/dashboard/profile" className="hover:text-cyan-300">
-          Profile
-        </Link>
-        <Link href="/dashboard/settings" className="hover:text-cyan-300">
-          Settings
-        </Link>
-      </nav>
-    </div>
+    <aside className="w-64 min-h-screen bg-black text-white pt-10 px-6 border-r border-white fixed">
+      <div className="space-y-2">
+        {navItems.map(({ label, href }) => (
+          <div key={label}>
+            <Link
+              href={href}
+              className={clsx(
+                'block py-2 px-4 transition duration-200 w-full no-underline',
+                pathname === href ? 'bg-[#1de9b6] text-black font-semibold' : 'hover:bg-[#4A4A4A] text-white'
+              )}
+            >
+              {label}
+            </Link>
+          </div>
+        ))}
+      </div>
+    </aside>
   );
 };
 

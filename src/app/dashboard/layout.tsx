@@ -4,7 +4,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   return (
     <div className="flex h-screen bg-black text-white">
       {/* Sidebar with subtle border */}
-      <aside className="w-64 bg-[#111] border-r border-white/10 h-full">
+      <aside className="w-64 bg-[#111] border-r border-white/10">
         <Sidebar />
       </aside>
 
