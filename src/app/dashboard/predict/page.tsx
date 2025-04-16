@@ -16,7 +16,7 @@ type APIKey = {
   key: string;
 };
 
-type PredictionResult = { [key: string]: any };
+type PredictionResult = { [key: string]: unknown };
 
 const PredictPage = () => {
   const [apiKeys, setApiKeys] = useState<APIKey[]>([]);
@@ -24,7 +24,7 @@ const PredictPage = () => {
   const [file, setFile] = useState<File | null>(null);
   const [fileName, setFileName] = useState<string | null>(null);
   const [results, setResults] = useState<PredictionResult[]>([]);
-  const [inputData, setInputData] = useState<any[]>([]);
+  const [inputData, setInputData] = useState<{ [key: string]: unknown }[]>([]);
   const [downloadFormat, setDownloadFormat] = useState<'csv' | 'json'>('csv');
   const [includeFullData, setIncludeFullData] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
@@ -64,7 +64,7 @@ const PredictPage = () => {
     reader.onload = async (e) => {
       try {
         setLoading(true);
-        let parsedInput: any[] = [];
+        let parsedInput: { [key: string]: unknown }[] = [];
 
         if (extension === 'json') {
           parsedInput = JSON.parse(e.target?.result as string);
@@ -73,7 +73,7 @@ const PredictPage = () => {
             header: true,
             skipEmptyLines: true,
           });
-          parsedInput = parsed.data as any[];
+          parsedInput = parsed.data as { [key: string]: unknown }[];
         } else {
           toast.error('Unsupported file type.');
           setLoading(false);

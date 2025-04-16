@@ -4,8 +4,8 @@ import { useAuth } from '@/lib/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
-const withAuth = (Component: React.FC) => {
-  return function ProtectedRoute(props: any) {
+const withAuth = <P extends object>(Component: React.FC<P>) => {
+  return function ProtectedRoute(props: P) {
     const { user, loading } = useAuth();
     const router = useRouter();
 
